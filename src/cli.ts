@@ -2,7 +2,7 @@ import yargs from 'yargs'
 import { hideBin } from 'yargs/helpers'
 
 const sourceOption: yargs.PositionalOptions = {
-    description: 'Folder containing all the OpenApi and Swagger files',
+    description: 'Glob patter to find all the OpenApi and Swagger files',
     type: 'string',
 }
 const destinationOption: yargs.PositionalOptions = {
@@ -28,7 +28,7 @@ export const parseCliOptions = (argv: string[]) => {
             project: projectOption,
         })
         .example([
-            ['$0 init ./api ./test', 'Initialize project with the api of the folder "./api" and store it in "./test"'],
+            ['$0 init ./api/*.json ./test', 'Initialize project with the api of the folder "./api" and store it in "./test"'],
             ['$0 test .', 'Validate project in the current folder'],
             ['$0 generate .', 'Refresh all the examples of the project in the current folder'],
         ])

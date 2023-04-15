@@ -5,15 +5,14 @@
   "main": "index.js",
   "scripts": {
     "dev": "ts-node src/api-test.ts",
-    "test": "pnpm run test-code && pnpm run test-example",
-    "test-code": "jest --silent=false",
-    "test-example": "echo test-example",
+    "test": "jest --silent=false",
     "build": "tsc -noEmit -skipLibCheck && node esbuild.config.mjs"
   },
   "keywords": [],
   "author": "marc0l92",
   "license": "AGPL-3.0",
   "devDependencies": {
+    "@types/fs-extra": "^11.0.1",
     "@types/jest": "^29.5.0",
     "@types/node": "^18.15.11",
     "@types/yargs": "^17.0.24",

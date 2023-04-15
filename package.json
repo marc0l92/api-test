@@ -1,17 +1,17 @@
 {
   "name": "api-test",
   "version": "1.0.0",
-  "description": "",
+  "description": "Unit tests for OpenApi and Swagger",
   "main": "index.js",
   "scripts": {
-    "test": "pnpm run test:code; pnpm run test:example",
-    "test:code": "jest --silent=false",
-    "test:example": "echo test-example",
+    "test": "pnpm run test-code && pnpm run test-example",
+    "test-code": "jest --silent=false",
+    "test-example": "echo test-example",
     "build": "tsc -noEmit -skipLibCheck && node esbuild.config.mjs"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "marc0l92",
+  "license": "AGPL-3.0",
   "devDependencies": {
     "@types/jest": "^29.5.0",
     "builtin-modules": "^3.3.0",

@@ -34,5 +34,5 @@ export const parseCliOptions = (argv: string[]) => {
         ])
         .epilogue('Project source at: https://github.com/marc0l92/api-test')
         .strict()
-        .parse()
+        .parseSync()
 }

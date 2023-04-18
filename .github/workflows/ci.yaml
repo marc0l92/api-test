@@ -19,14 +19,14 @@ jobs:
           version: latest
           run_install: false
       - name: Install dependencies
-        id: install
         run: |
           pnpm install --frozen-lockfile
       - name: Build
-        id: build
         run: |
           pnpm run build
       - name: Test
-        id: test
         run: |
           pnpm run test
+      - name: Build schema
+        run: |
+          pnpm run build-project-schema

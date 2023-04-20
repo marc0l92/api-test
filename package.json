@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "ts-node src/api-test.ts",
     "test": "jest --silent=false",
-    "build-project-schema": "typescript-json-schema --required src/commands/project-interface.ts ApiTestProject > dist/api-test-project.schema.json",
+    "build-project-schema": "typescript-json-schema --required src/interfaces/project-interface.ts ApiTestProject > dist/api-test-project.schema.json",
     "build": "tsc -noEmit -skipLibCheck && node esbuild.config.mjs"
   },
   "keywords": [],

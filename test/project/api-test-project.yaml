@@ -1,1 +1,91 @@
 version: 1
+services:
+  /pet:
+    put:
+      1.0.17:
+        apiFiles:
+          - test\api\petstore.json
+    post:
+      1.0.17:
+        apiFiles:
+          - test\api\petstore.json
+  /pet/findByStatus:
+    get:
+      1.0.17:
+        apiFiles:
+          - test\api\petstore.json
+  /pet/findByTags:
+    get:
+      1.0.17:
+        apiFiles:
+          - test\api\petstore.json
+  /pet/{petId}:
+    get:
+      1.0.17:
+        apiFiles:
+          - test\api\petstore.json
+    post:
+      1.0.17:
+        apiFiles:
+          - test\api\petstore.json
+    delete:
+      1.0.17:
+        apiFiles:
+          - test\api\petstore.json
+  /pet/{petId}/uploadImage:
+    post:
+      1.0.17:
+        apiFiles:
+          - test\api\petstore.json
+  /store/inventory:
+    get:
+      1.0.17:
+        apiFiles:
+          - test\api\petstore.json
+  /store/order:
+    post:
+      1.0.17:
+        apiFiles:
+          - test\api\petstore.json
+  /store/order/{orderId}:
+    get:
+      1.0.17:
+        apiFiles:
+          - test\api\petstore.json
+    delete:
+      1.0.17:
+        apiFiles:
+          - test\api\petstore.json
+  /user:
+    post:
+      1.0.17:
+        apiFiles:
+          - test\api\petstore.json
+  /user/createWithList:
+    post:
+      1.0.17:
+        apiFiles:
+          - test\api\petstore.json
+  /user/login:
+    get:
+      1.0.17:
+        apiFiles:
+          - test\api\petstore.json
+  /user/logout:
+    get:
+      1.0.17:
+        apiFiles:
+          - test\api\petstore.json
+  /user/{username}:
+    get:
+      1.0.17:
+        apiFiles:
+          - test\api\petstore.json
+    put:
+      1.0.17:
+        apiFiles:
+          - test\api\petstore.json
+    delete:
+      1.0.17:
+        apiFiles:
+          - test\api\petstore.json

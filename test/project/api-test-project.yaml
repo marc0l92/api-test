@@ -1,3 +1,5 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/marc0l92/api-test/master/dist/api-test-project.schema.json
+
 version: 1
 services:
   /pet:
@@ -89,3 +91,5 @@ services:
       1.0.17:
         apiFiles:
           - test\api\petstore.json
+$schema: >-
+  https://raw.githubusercontent.com/marc0l92/api-test/master/dist/api-test-project.schema.json

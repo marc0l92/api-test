@@ -18,13 +18,19 @@ const loadProject = async (projectDir: string): Promise<ApiTestProject> => {
 
 const saveProject = async (projectDir: string, project: ApiTestProject) => {
     const projectFileName = path.join(projectDir, kProjectFileName)
-    writeFileSync(projectFileName, yaml.dump(project))
+    const metadata = '# yaml-language-server: $schema=https://raw.githubusercontent.com/marc0l92/api-test/master/dist/api-test-project.schema.json'
+    writeFileSync(projectFileName, metadata + '\n\n' + yaml.dump(project))
 }
 
 const migrateProjectVersion = (project: ApiTestProject) => {
     switch (project.version) {
         default:
             project.version = 1
+        case 1:
+            if (!('services' in project)) {
+                project.services = {}
+            }
+            break
     }
 }
 
@@ -42,9 +48,6 @@ const arrayPushUnique = (array: string[], item: string) => {
 
 export const initCommand = async (source: string, destinationDir: string) => {
     const project = await loadProject(destinationDir)
-    if (!('services' in project)) {
-        project.services = {}
-    }
 
     for (const fileName of await glob(source)) {
         try {
@@ -57,6 +60,7 @@ export const initCommand = async (source: string, destinationDir: string) => {
                     }
                     for (const apiMethod in apiDoc.paths[apiPath]) {
                         if (apiMethod !== 'properties') {
+                            const apiService = apiDoc.paths[apiPath][apiMethod]
                             if (!(apiMethod in project.services[apiPath])) {
                                 project.services[apiPath][apiMethod] = {}
                             }
@@ -66,6 +70,7 @@ export const initCommand = async (source: string, destinationDir: string) => {
                             arrayPushUnique(project.services[apiPath][apiMethod][apiVersion].apiFiles, fileName)
                             const serviceDir = path.join(destinationDir, 'services', apiPath.replace(/\//g, '-'), apiMethod, apiVersion)
                             mkdirSync(serviceDir, { recursive: true })
+
                         }
                     }
                 }

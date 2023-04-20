@@ -5,7 +5,6 @@ export const kProjectFileName = 'api-test-project.yaml'
  * @additionalProperties false
  */
 export interface ApiTestProject {
-    $schema?: string
     /**
      * ApiTestProject version
      */

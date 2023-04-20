@@ -3,13 +3,33 @@
     "additionalProperties": false,
     "id": "api-test-project",
     "properties": {
-        "$schema": {
-            "type": "string"
+        "services": {
+            "additionalProperties": {
+                "additionalProperties": {
+                    "additionalProperties": {
+                        "properties": {
+                            "apiFiles": {
+                                "items": {
+                                    "type": "string"
+                                },
+                                "type": "array"
+                            }
+                        },
+                        "required": [
+                            "apiFiles"
+                        ],
+                        "type": "object"
+                    },
+                    "type": "object"
+                },
+                "type": "object"
+            },
+            "description": "Services collection",
+            "type": "object"
         },
-        "basePath": {
-            "description": "Prefix to use for the pages in the tool",
-            "pattern": "^/.*[^/]$",
-            "type": "string"
+        "version": {
+            "description": "ApiTestProject version",
+            "type": "number"
         }
     },
     "type": "object"

@@ -34,6 +34,12 @@ const isValidApiDoc = (apiDoc: ApiDoc): boolean => {
         && 'info' in apiDoc && 'version' in apiDoc.info
 }
 
+const arrayPushUnique = (array: string[], item: string) => {
+    if (array.indexOf(item) === -1) {
+        array.push(item)
+    }
+}
+
 export const initCommand = async (source: string, destinationDir: string) => {
     const project = await loadProject(destinationDir)
     if (!('services' in project)) {
@@ -45,19 +51,21 @@ export const initCommand = async (source: string, destinationDir: string) => {
             const apiDoc: ApiDoc = yaml.load(readFileSync(fileName, { encoding: 'utf-8' })) || {}
             if (isValidApiDoc(apiDoc)) {
                 const apiVersion = apiDoc.info.version
-                for (const path in apiDoc.paths) {
-                    if (!(path in project.services)) {
-                        project.services[path] = {}
+                for (const apiPath in apiDoc.paths) {
+                    if (!(apiPath in project.services)) {
+                        project.services[apiPath] = {}
                     }
-                    for (const method in apiDoc.paths[path]) {
-                        if (method !== 'properties') {
-                            if (!(method in project.services[path])) {
-                                project.services[path][method] = {}
+                    for (const apiMethod in apiDoc.paths[apiPath]) {
+                        if (apiMethod !== 'properties') {
+                            if (!(apiMethod in project.services[apiPath])) {
+                                project.services[apiPath][apiMethod] = {}
                             }
-                            if (!(apiVersion in project.services[path][method])) {
-                                project.services[path][method][apiVersion] = { apiFiles: [] }
+                            if (!(apiVersion in project.services[apiPath][apiMethod])) {
+                                project.services[apiPath][apiMethod][apiVersion] = { apiFiles: [] }
                             }
-                            project.services[path][method][apiVersion].apiFiles.push(fileName)
+                            arrayPushUnique(project.services[apiPath][apiMethod][apiVersion].apiFiles, fileName)
+                            const serviceDir = path.join(destinationDir, 'services', apiPath.replace(/\//g, '-'), apiMethod, apiVersion)
+                            mkdirSync(serviceDir, { recursive: true })
                         }
                     }
                 }

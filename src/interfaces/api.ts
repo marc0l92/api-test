@@ -13,6 +13,7 @@ export interface ApiDoc {
 
 export interface ApiService {
     properties?: {
+        in: string
         schema?: ApiModel
     }[]
     requestBody?: {

@@ -99,6 +99,10 @@ const readAndResolveApi = async (fileName: string): Promise<ApiDoc> => {
     return (await $RefParser.dereference(apiDoc)) as unknown as ApiDoc
 }
 
+const generateGitIgnore = async (projectDir: string) => {
+    await writeFile(path.join(projectDir, '.gitignore'), 'schema.json')
+}
+
 export const initCommand = async (source: string, destinationDir: string) => {
     const project = await loadProject(destinationDir)
 
@@ -148,5 +152,6 @@ export const initCommand = async (source: string, destinationDir: string) => {
         }
     }
 
+    generateGitIgnore(destinationDir)
     await saveProject(destinationDir, project)
 }

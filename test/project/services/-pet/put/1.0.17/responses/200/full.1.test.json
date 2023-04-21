@@ -1,0 +1,37 @@
+{
+  "name": "minim nostrud est ullamco",
+  "photoUrls": [
+    "ullamco ea quis reprehenderit",
+    "nostrud",
+    "ea in in"
+  ],
+  "status": "available",
+  "id": 97750513,
+  "tags": [
+    {
+      "name": "fugiat culpa ad dolore in",
+      "id": -53656197
+    },
+    {
+      "id": -87064804,
+      "name": "aliqua enim ad tempor"
+    },
+    {
+      "name": "in esse do",
+      "id": 65621580
+    },
+    {
+      "name": "labore est",
+      "id": -79544041
+    },
+    {
+      "id": 37677104,
+      "name": "occaecat deserunt fugiat ut"
+    }
+  ],
+  "category": {
+    "id": -3913489,
+    "name": "dolore enim ad nostrud"
+  },
+  "$schema": "schema.json"
+}

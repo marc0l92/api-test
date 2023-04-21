@@ -464,16 +464,6 @@
                         }
                     }
                 ],
-                "requestBody": {
-                    "content": {
-                        "application/octet-stream": {
-                            "schema": {
-                                "type": "string",
-                                "format": "binary"
-                            }
-                        }
-                    }
-                },
                 "responses": {
                     "200": {
                         "description": "successful operation",

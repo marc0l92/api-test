@@ -4,12 +4,16 @@ import yaml from 'js-yaml'
 import path from "path"
 import { kProjectFileName } from "./constants"
 
+export const readYamlFile = async (fileName: string) => {
+    return yaml.load(await readFile(fileName, { encoding: 'utf-8' })) || {}
+}
+
 export const loadProject = async (projectDir: string): Promise<ApiTestProject> => {
     await mkdir(projectDir, { recursive: true })
     const projectFileName = path.join(projectDir, kProjectFileName)
     let project: ApiTestProject = {}
     if (await exists(projectFileName)) {
-        project = yaml.load(await readFile(projectFileName, { encoding: 'utf-8' })) || {}
+        project = await readYamlFile(projectFileName)
     }
     migrateProjectVersion(project)
     return project
@@ -37,4 +41,8 @@ export const arrayPushUnique = (array: string[], item: string) => {
     if (array.indexOf(item) === -1) {
         array.push(item)
     }
+}
+
+export const getServiceDir = (destinationDir: string, apiPath: string, apiMethod: string, apiVersion: string): string => {
+    return path.join(destinationDir, 'services', apiPath.replace(/\//g, '-'), apiMethod, apiVersion)
 }

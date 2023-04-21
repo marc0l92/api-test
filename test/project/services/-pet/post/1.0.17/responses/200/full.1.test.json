@@ -1,0 +1,38 @@
+{
+  "name": "exercitation nostrud",
+  "photoUrls": [
+    "aliquip Lorem pariatur amet in",
+    "consequat labore cillum enim",
+    "esse in",
+    "dolor"
+  ],
+  "id": -991673,
+  "status": "sold",
+  "category": {
+    "name": "exercitation",
+    "id": 17639743
+  },
+  "tags": [
+    {
+      "id": -68916169,
+      "name": "elit est ex et"
+    },
+    {
+      "id": -27713238,
+      "name": "reprehenderit labore et sit"
+    },
+    {
+      "name": "id ea deserunt commodo",
+      "id": -64524110
+    },
+    {
+      "name": "consequat cillum",
+      "id": 61384509
+    },
+    {
+      "id": 81818931,
+      "name": "sed ipsum"
+    }
+  ],
+  "$schema": "schema.json"
+}

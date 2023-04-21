@@ -1,7 +1,6 @@
-import { readFile } from "fs-extra"
 import { ApiDoc, ApiModel, ApiService } from "../interfaces/api"
 import $RefParser from "@apidevtools/json-schema-ref-parser"
-import yaml from 'js-yaml'
+import { readYamlFile } from "./utils"
 
 export const isValidApiDoc = (apiDoc: ApiDoc): boolean => {
     return typeof apiDoc === 'object' && ('swagger' in apiDoc || 'openapi' in apiDoc)
@@ -53,6 +52,10 @@ export const getResponses = (apiService: ApiService): { [statusCode: string]: Ap
 }
 
 export const readAndResolveApi = async (fileName: string): Promise<ApiDoc> => {
-    const apiDoc: ApiDoc = yaml.load(await readFile(fileName, { encoding: 'utf-8' })) || {}
+    const apiDoc: ApiDoc = await readYamlFile(fileName)
     return (await $RefParser.dereference(apiDoc)) as unknown as ApiDoc
+}
+
+export const getService = (apiDoc: ApiDoc, apiPath: string, apiMethod: string): ApiService => {
+    return apiDoc.paths[apiPath][apiMethod]
 }

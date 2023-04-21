@@ -1,0 +1,20 @@
+{
+  "name": "incididunt amet ut",
+  "photoUrls": [
+    "dolore irure",
+    "sed"
+  ],
+  "category": {
+    "id": -48903504,
+    "name": "anim elit aliquip"
+  },
+  "status": "sold",
+  "id": -24209894,
+  "tags": [
+    {
+      "name": "eu ex",
+      "id": -72865410
+    }
+  ],
+  "$schema": "./schema.json"
+}

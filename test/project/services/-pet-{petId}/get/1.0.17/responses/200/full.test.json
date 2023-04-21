@@ -1,0 +1,22 @@
+{
+  "name": "do",
+  "photoUrls": [
+    "labore magna cupidatat",
+    "sit non id sint in",
+    "est mollit exercitation irure",
+    "occaecat qui"
+  ],
+  "tags": [
+    {
+      "name": "veniam ad sed aliqua ullamco",
+      "id": -2564325
+    }
+  ],
+  "id": -47660833,
+  "status": "available",
+  "category": {
+    "name": "sit id enim quis eiusmod",
+    "id": 35218591
+  },
+  "$schema": "./schema.json"
+}

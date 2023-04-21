@@ -3,6 +3,9 @@
     "additionalProperties": false,
     "id": "api-test-project",
     "properties": {
+        "$schema": {
+            "type": "string"
+        },
         "services": {
             "additionalProperties": {
                 "additionalProperties": {

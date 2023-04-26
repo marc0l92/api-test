@@ -44,5 +44,5 @@ export const arrayPushUnique = (array: string[], item: string) => {
 }
 
 export const getServiceDir = (destinationDir: string, apiPath: string, apiMethod: string, apiVersion: string): string => {
-    return path.join(destinationDir, 'services', apiPath.replace(/\//g, '-'), apiMethod, apiVersion)
+    return path.join(destinationDir, 'services', apiPath.replace(/^\//, '').replace(/\//g, '-'), apiMethod, apiVersion)
 }

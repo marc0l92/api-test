@@ -1,16 +1,25 @@
-import Ajv from "ajv"
+import Ajv, { ErrorObject } from "ajv"
 import { Options } from "ajv"
 import { getServiceDir, loadProject, readYamlFile } from "../common/utils"
 import { getRequest, getService, readAndResolveApi } from "../common/api"
 import { glob } from "glob"
 import path from "path"
 import { kRequestDirName } from "../common/constants"
+import { writeFile } from "fs-extra"
+import yaml from "js-yaml"
+import { exit } from "process"
 
 const ajvOptions: Options = { allErrors: true, strictSchema: false, validateFormats: false }
+interface TestReport {
+    [fileName: string]: {
+        errors: ErrorObject[]
+    }
+}
 
-export const testCommand = async (projectDir: string) => {
+export const testCommand = async (projectDir: string, failOnError: boolean, reportOutput: string) => {
     const ajv = new Ajv(ajvOptions)
-    const errorsReport = {}
+    const errorsReport: TestReport = {}
+    let hasErrors = false
 
     const project = await loadProject(projectDir)
     for (const apiPath in project.services) {
@@ -24,12 +33,25 @@ export const testCommand = async (projectDir: string) => {
                     if (request) {
                         const validator = ajv.compile(request)
                         for (const exampleFileName of await glob(path.join(serviceDir, kRequestDirName, '*.test.json').replace(/\\/g, '/'))) {
-                            const valid = validator(readYamlFile(exampleFileName))
-                            if (!valid) console.log(validator.errors)
+                            const exampleContent = await readYamlFile(exampleFileName)
+                            const valid = validator(exampleContent)
+                            if (!valid) {
+                                errorsReport[exampleFileName] = {
+                                    errors: validator.errors,
+                                }
+                                hasErrors = true
+                            }
                         }
                     }
                 }
             }
         }
+    }
+
+    if (reportOutput) {
+        writeFile(reportOutput, yaml.dump(errorsReport))
+    }
+    if (failOnError && hasErrors) {
+        exit(1)
     }
 }

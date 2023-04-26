@@ -13,7 +13,7 @@ const apiTest = async () => {
                 await initCommand(argv.source as string, argv.destination as string)
                 break
             case 'test':
-                await testCommand(argv.project as string)
+                await testCommand(argv.project as string, argv.failOnError as boolean, argv.reportOutput as string)
                 break
             case 'generate':
                 await generateCommand(argv.project as string)

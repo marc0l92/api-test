@@ -23,6 +23,7 @@ const reportOutputOption: yargs.PositionalOptions = {
     description: 'Save report in a file',
     alias: 'o',
     type: 'string',
+    default: 'api-test-report.yaml',
 }
 
 export const parseCliOptions = (argv: string[]) => {

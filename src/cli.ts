@@ -13,6 +13,17 @@ const projectOption: yargs.PositionalOptions = {
     description: 'Project folder',
     type: 'string',
 }
+const failOnErrorOption: yargs.PositionalOptions = {
+    description: 'Return not zero status code when an error is detected',
+    alias: 'e',
+    type: 'boolean',
+    default: false,
+}
+const reportOutputOption: yargs.PositionalOptions = {
+    description: 'Save report in a file',
+    alias: 'o',
+    type: 'string',
+}
 
 export const parseCliOptions = (argv: string[]) => {
     return yargs(hideBin(argv))
@@ -23,6 +34,8 @@ export const parseCliOptions = (argv: string[]) => {
         })
         .command('test <project>', 'Validate all the examples of a project', {
             project: projectOption,
+            failOnError: failOnErrorOption,
+            reportOutput: reportOutputOption,
         })
         .command('generate <project>', 'Generate and update the minimal and maximal examples of the project', {
             project: projectOption,

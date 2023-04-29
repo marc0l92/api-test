@@ -10,7 +10,7 @@ const apiTest = async () => {
     if (argv._[0]) {
         switch (argv._[0]) {
             case 'init':
-                await initCommand(argv.source as string, argv.destination as string)
+                await initCommand(argv.source as string, argv.destination as string, argv.force as boolean)
                 break
             case 'test':
                 await testCommand(argv.project as string, argv.failOnError as boolean, argv.reportOutput as string)

@@ -13,8 +13,8 @@ const generateGitIgnore = async (projectDir: string) => {
     await writeFile(path.join(projectDir, '.gitignore'), kSchemaFileName)
 }
 
-export const initCommand = async (source: string, destinationDir: string) => {
-    if (await exists(destinationDir)) {
+export const initCommand = async (source: string, destinationDir: string, force: boolean) => {
+    if (!force && await exists(destinationDir)) {
         throw new Error('The selected destination directory for a new project already exists')
     }
     const project = await loadProject(destinationDir)

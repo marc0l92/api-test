@@ -13,6 +13,12 @@ const projectOption: yargs.PositionalOptions = {
     description: 'Project folder',
     type: 'string',
 }
+const forceOption: yargs.PositionalOptions = {
+    description: 'Initialize the project even if the destination folder already exist by merging the existing project with the new one',
+    alias: 'f',
+    type: 'boolean',
+    default: false,
+}
 const failOnErrorOption: yargs.PositionalOptions = {
     description: 'Return not zero status code when an error is detected',
     alias: 'e',
@@ -32,6 +38,7 @@ export const parseCliOptions = (argv: string[]) => {
         .command('init <source> <destination>', 'Initialize a new project', {
             source: sourceOption,
             destination: destinationOption,
+            force: forceOption,
         })
         .command('test <project>', 'Validate all the examples of a project', {
             project: projectOption,
@@ -48,5 +55,6 @@ export const parseCliOptions = (argv: string[]) => {
         ])
         .epilogue('Project source at: https://github.com/marc0l92/api-test')
         .strict()
+        // .exitProcess(false)
         .parseSync()
 }
